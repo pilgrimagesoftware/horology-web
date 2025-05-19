@@ -16,6 +16,7 @@ on:
       - tsconfig.json
       - .node-version
       - .github/workflows/deploy-vercel-dev.yaml
+  workflow_dispatch:
 
 permissions:
   contents: read
