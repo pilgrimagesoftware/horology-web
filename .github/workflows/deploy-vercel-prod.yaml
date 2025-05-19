@@ -14,7 +14,6 @@ on:
       - package.json
       - svelte.config.js
       - tsconfig.json
-      - rollup.config.js
       - .node-version
       - .github/workflows/deploy-vercel-prod.yaml
 
