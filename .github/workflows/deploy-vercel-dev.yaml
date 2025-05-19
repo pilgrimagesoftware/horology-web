@@ -8,6 +8,15 @@ on:
   push:
     branches:
       - develop
+    paths:
+      - src/**
+      - public/**
+      - package.json
+      - svelte.config.js
+      - tsconfig.json
+      - rollup.config.js
+      - .node-version
+      - .github/workflows/deploy-vercel-dev.yaml
 
 permissions:
   contents: read
@@ -22,7 +31,7 @@ jobs:
       - name: Build
         run: |
               npm install
-              npm build
+              npm run build
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
