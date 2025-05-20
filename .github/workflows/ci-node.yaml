@@ -18,7 +18,7 @@ permissions:
   id-token: write
 
 jobs:
-  deploy-development:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
