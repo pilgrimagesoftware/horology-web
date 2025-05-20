@@ -1,4 +1,4 @@
-name: Vercel Dev Deployment
+name: Vercel Preview Deployment
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
     paths:
       - src/**
       - public/**
+      - static/**
       - package.json
       - svelte.config.js
-      - tsconfig.json
       - .node-version
-      - .github/workflows/deploy-vercel-dev.yaml
+      - .github/workflows/deploy-vercel-preview.yaml
   workflow_dispatch:
 
 permissions:
