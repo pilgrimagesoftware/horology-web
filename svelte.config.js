@@ -1,5 +1,5 @@
-import sveltePreprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-vercel';
 
-export default {
-  preprocess: sveltePreprocess()
-};
+const config = { kit: { adapter: adapter() } };
+
+export default config;
