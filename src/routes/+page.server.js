@@ -4,7 +4,6 @@ export function load({ cookies, setHeaders }) {
     cookies.set('visited', 'true', { path: '/' });
 
     setHeaders({
-        'Content-type': 'text/plain'
     });
 
     return {
