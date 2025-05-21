@@ -35,7 +35,7 @@ jobs:
       - name: Replace version in package.json
         run: |
           echo "Bumping version to ${{ steps.package_version.outputs.version }}"
-          jq '.version = "${{ steps.package_version.outputs.version }}"' package.json | sponge package.json
+          jq '.version = "${{ steps.package_version.outputs.version }}"' > tmp.json && mv tmp.json package.json
       - name: Install Vercel CLI
         run: npm install --global vercel@latest vite@latest
       - name: Pull environment
