@@ -1,17 +1,10 @@
 name: Vercel Preview Deployment
 
 on:
-  push:
-    branches:
-      - develop
-    paths:
-      - src/**
-      - public/**
-      - static/**
-      - package.json
-      - svelte.config.js
-      - .node-version
-      - .github/workflows/deploy-vercel-preview.yaml
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -25,6 +18,7 @@ env:
 jobs:
   deploy-development:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'develop' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,6 +31,6 @@ jobs:
       - name: Pull environment
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
-        run: vercel build --environment=preview
+        run: vercel build --yes --target=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Preview environment
-        run: vercel deploy --prebuilt --target=preview
+        run: vercel deploy --yes --prebuilt --target=preview --token=${{ secrets.VERCEL_TOKEN }}
