@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import { Statsig } from "@statsig/statsig-node-core";
+	// import { Statsig } from "@statsig/statsig-node-core";
 
-	const statsig = new Statsig(import.meta.env.STATSIG_SERVER_SECRET_KEY );
-	statsig.initialize();
+	// const statsig = new Statsig(import.meta.env.STATSIG_SERVER_SECRET_KEY );
+	// statsig.initialize();
 
 	let { children } = $props();
 
