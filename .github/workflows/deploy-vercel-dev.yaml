@@ -27,6 +27,15 @@ jobs:
           node-version-file: .node-version
       - name: Install dependencies
         run: npm install
+      - name: Bump version
+        id: package_version
+        uses: KageKirin/bump-node-package-version@v0
+        with:
+          patch: true
+      - name: Replace version in package.json
+        run: |
+          echo "Bumping version to ${{ steps.package_version.outputs.version }}"
+          jq '.version = "${{ steps.package_version.outputs.version }}"' package.json | sponge package.json
       - name: Install Vercel CLI
         run: npm install --global vercel@latest vite@latest
       - name: Pull environment
