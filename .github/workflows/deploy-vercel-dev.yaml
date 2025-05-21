@@ -1,4 +1,4 @@
-name: Vercel Preview Deployment
+name: Vercel Dev Deployment
 
 on:
   workflow_run:
@@ -14,6 +14,7 @@ permissions:
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ENV: development
 
 jobs:
   deploy-development:
@@ -29,8 +30,8 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest vite@latest
       - name: Pull environment
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
-        run: vercel build --yes --target=preview --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy to Preview environment
-        run: vercel deploy --yes --prebuilt --target=preview --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --yes --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to ${{ env.VERCEL_ENV }} environment
+        run: vercel deploy --yes --prebuilt --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
