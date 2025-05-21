@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       bump:
-        description: "SemVer component to update"
+        description: 'SemVer component to update'
         type: choice
         options:
           - major
