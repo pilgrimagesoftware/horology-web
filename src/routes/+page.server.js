@@ -1,4 +1,4 @@
-import { Statsig } from '@statsig/statsig-node-core';
+// import { Statsig } from '@statsig/statsig-node-core';
 
 // const statsig = new Statsig(import.meta.env.STATSIG_SERVER_SDK_KEY);
 // await statsig.initialize();

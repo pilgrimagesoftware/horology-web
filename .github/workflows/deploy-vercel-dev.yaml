@@ -45,8 +45,17 @@ jobs:
           vercel pull --yes --environment=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
         run: |
+          ls -la
           cat package.json
           vercel build --yes --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to ${{ env.VERCEL_ENV }} environment
         run: |
           vercel deploy --yes --prebuilt --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Create Sentry release
+        uses: getsentry/action-release@v3
+        env:
+            SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+            SENTRY_ORG: ${{ vars.SENTRY_ORG }}
+            SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}
+        with:
+            environment: ${{ vars.SENTRY_ENV }}
