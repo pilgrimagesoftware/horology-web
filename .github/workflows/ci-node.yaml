@@ -8,8 +8,12 @@ on:
       - src/**
       - public/**
       - static/**
+      - e2e/**
       - package.json
       - svelte.config.js
+      - vite.config.js
+      - flags.ts
+      - jsconfig.json
       - .node-version
   workflow_dispatch:
 

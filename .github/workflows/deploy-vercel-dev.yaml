@@ -28,15 +28,17 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-      - name: Bump version
-        id: package_version
-        uses: KageKirin/bump-node-package-version@v1
+      - name: 'Get latest tag'
+        id: latest_tag
+        uses: actions-ecosystem/action-get-latest-tag@v1
         with:
-          patch: true
+          semver_only: true
+          initial_version: v0.0.0
+          with_initial_version: true
       - name: Replace version in package.json
         run: |
-          echo "Bumping version to ${{ steps.package_version.outputs.version }}"
-          jq '.version = "${{ steps.package_version.outputs.version }}"' package.json > tmp.json
+          echo "Bumping version to ${{ steps.latest_tag.outputs.tag }}"
+          jq '.version = "${{ steps.latest_tag.outputs.tag }}"' package.json > tmp.json
           mv tmp.json package.json
       - name: Install Vercel CLI
         run: |
