@@ -30,7 +30,7 @@ jobs:
           npm install
       - name: Bump version
         id: package_version
-        uses: KageKirin/bump-node-package-version@v0
+        uses: KageKirin/bump-node-package-version@v1
         with:
           patch: true
       - name: Replace version in package.json
