@@ -1,12 +1,11 @@
 export function load({ cookies, setHeaders }) {
-    const visited = cookies.get('visited');
+	const visited = cookies.get('visited');
 
-    cookies.set('visited', 'true', { path: '/' });
+	cookies.set('visited', 'true', { path: '/' });
 
-    setHeaders({
-    });
+	setHeaders({});
 
-    return {
-        visited: visited === 'true'
-    }
+	return {
+		visited: visited === 'true'
+	};
 }
