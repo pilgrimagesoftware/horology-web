@@ -5,10 +5,10 @@ import * as Sentry from '@sentry/sveltekit';
 Sentry.init({
 	dsn: 'https://158f95b827004bf88ca068278f90f686@o126333.ingest.us.sentry.io/285522',
 
-	tracesSampleRate: 1.0
+	tracesSampleRate: 1.0,
 
 	// uncomment the line below to enable Spotlight (https://spotlightjs.com)
-	// spotlight: import.meta.env.DEV,
+	spotlight: import.meta.env.DEV,
 });
 
 // If you have custom handlers, make sure to place them after `sentryHandle()` in the `sequence` function.
