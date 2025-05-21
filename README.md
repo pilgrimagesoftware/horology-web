@@ -1,5 +1,8 @@
 # Horology Web
 
+[![CI](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/ci-node.yaml/badge.svg)](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/ci-node.yaml)
+[![Preview Deployment](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/deploy-vercel-preview.yaml/badge.svg)](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/deploy-vercel-preview.yaml)
+
 A web frontend for Horology.
 
 ## Developing
