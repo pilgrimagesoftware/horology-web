@@ -1,11 +1,16 @@
+import { Statsig } from "@statsig/statsig-node-core";
+
+const statsig = new Statsig(import.meta.env.STATSIG_SERVER_SDK_KEY);
+await statsig.initialize();
+
 export function load({ cookies, setHeaders }) {
-	const visited = cookies.get('visited');
+	// const visited = cookies.get('visited');
 
-	cookies.set('visited', 'true', { path: '/' });
+	// cookies.set('visited', 'true', { path: '/' });
 
-	setHeaders({});
+	// setHeaders({});
 
 	return {
-		visited: visited === 'true'
+		// visited: visited === 'true'
 	};
 }
