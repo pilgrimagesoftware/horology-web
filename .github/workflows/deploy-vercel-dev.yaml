@@ -36,7 +36,8 @@ jobs:
       - name: Replace version in package.json
         run: |
           echo "Bumping version to ${{ steps.package_version.outputs.version }}"
-          jq '.version = "${{ steps.package_version.outputs.version }}"' > tmp.json && mv tmp.json package.json
+          jq '.version = "${{ steps.package_version.outputs.version }}"' package.json > tmp.json
+          mv tmp.json package.json
       - name: Install Vercel CLI
         run: |
           npm install --global vercel@latest vite@latest
@@ -45,8 +46,6 @@ jobs:
           vercel pull --yes --environment=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
         run: |
-          ls -la
-          cat package.json
           vercel build --yes --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to ${{ env.VERCEL_ENV }} environment
         run: |
