@@ -26,7 +26,8 @@ jobs:
         with:
           node-version-file: .node-version
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
       - name: Bump version
         id: package_version
         uses: KageKirin/bump-node-package-version@v0
@@ -37,10 +38,15 @@ jobs:
           echo "Bumping version to ${{ steps.package_version.outputs.version }}"
           jq '.version = "${{ steps.package_version.outputs.version }}"' > tmp.json && mv tmp.json package.json
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest vite@latest
+        run: |
+          npm install --global vercel@latest vite@latest
       - name: Pull environment
-        run: vercel pull --yes --environment=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel pull --yes --environment=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
-        run: vercel build --yes --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          cat package.json
+          vercel build --yes --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to ${{ env.VERCEL_ENV }} environment
-        run: vercel deploy --yes --prebuilt --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel deploy --yes --prebuilt --target=${{ env.VERCEL_ENV }} --token=${{ secrets.VERCEL_TOKEN }}
