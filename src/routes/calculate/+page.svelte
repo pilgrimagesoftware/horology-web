@@ -62,7 +62,7 @@
   }
 </style>
 
-<h2>Date/Time Adjuster</h2>
+<h2>Calculate</h2>
 
 <!-- Mode Selector -->
 <div class="section">
@@ -78,10 +78,14 @@
 <div class="section">
   <h3>Base Date and Time</h3>
   <div class="grid">
+	{#if mode === 'datetime' || mode === 'date'}
     <label for="date">Date:</label>
     <input id="date" type="date" bind:value={baseDate} />
+	{/if}
+	{#if mode === 'datetime' || mode === 'time'}
     <label for="time">Time:</label>
     <input id="time" type="time" bind:value={baseTime} />
+	{/if}
   </div>
 </div>
 
@@ -89,18 +93,22 @@
 <div class="section">
   <h3>Adjustments</h3>
   <div class="grid">
+	{#if mode === 'datetime' || mode === 'date'}
     <label for="adj_years">Years:</label>
     <input id="adj_years" type="number" bind:value={adjust.years} />
     <label for="adj_months">Months:</label>
     <input id="adj_months" type="number" bind:value={adjust.months} />
     <label for="adj_days">Days:</label>
     <input id="adj_days" type="number" bind:value={adjust.days} />
+	{/if}
+	{#if mode === 'datetime' || mode === 'time'}
     <label for="adj_hours">Hours:</label>
     <input id="adj_hours" type="number" bind:value={adjust.hours} />
     <label for="adj_minutes">Minutes:</label>
     <input id="adj_minutes" type="number" bind:value={adjust.minutes} />
     <label for="adj_seconds">Seconds:</label>
     <input id="adj_seconds" type="number" bind:value={adjust.seconds} />
+	{/if}
   </div>
 </div>
 
