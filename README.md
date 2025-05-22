@@ -2,6 +2,10 @@
 
 [![CI](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/ci-node.yaml/badge.svg)](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/ci-node.yaml)
 [![Preview Deployment](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/deploy-vercel-preview.yaml/badge.svg)](https://github.com/pilgrimagesoftware/horology-web/actions/workflows/deploy-vercel-preview.yaml)
+[![License](https://img.shields.io/github/license/pilgrimagesoftware/horology-api.svg)](https://img.shields.io/github/license/pilgrimagesoftware/horology-api.svg)
+[![Issues](https://img.shields.io/github/issues/pilgrimagesoftware/horology-api.svg)](https://img.shields.io/github/issues/pilgrimagesoftware/horology-api.svg)
+[![PRs](https://img.shields.io/github/issues-pr/pilgrimagesoftware/horology-api.svg)](https://img.shields.io/github/issues-pr/pilgrimagesoftware/horology-api.svg)
+[![Dependabot](https://badgen.net/github/dependabot/pilgrimagesoftware/horology-api)](https://badgen.net/github/dependabot/pilgrimagesoftware/horology-api)
 
 A web frontend for Horology.
 
