@@ -21,13 +21,3 @@ export function load() {
         mode: 'dateAndTime',
 	};
 }
-
-export const actions = {
-	calculate: async ({ cookies, request }) => {
-		const formData = await request.formData();
-
-		// const result = await statsig.checkGate('test_gate', data);
-
-		console.log('formData', formData);
-	},
-};
