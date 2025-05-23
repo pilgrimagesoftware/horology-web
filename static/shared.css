@@ -240,3 +240,15 @@ ul.todos button {
 ul.todos button:hover {
 	opacity: 1;
 }
+.grid {
+		display: grid;
+		gap: 0.5rem;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+	}
+	.section {
+		border: 1px solid #ccc;
+		padding: 1rem;
+		margin-bottom: 1rem;
+		border-radius: 8px;
+	}
