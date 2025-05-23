@@ -22,3 +22,7 @@
 </nav>
 
 {@render children()}
+
+<style>
+
+</style>
