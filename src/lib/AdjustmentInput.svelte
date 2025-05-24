@@ -1,25 +1,21 @@
 <script lang="ts">
+	import { CalculationMode } from '$lib/calculation';
+	import type { Adjustments } from '$lib/objects';
+
 	interface Props {
 		title?: string;
-		adjust: {
-			years: number;
-			months: number;
-			days: number;
-			hours: number;
-			minutes: number;
-			seconds: number;
-		};
-		mode: 'datetime' | 'date' | 'time';
+		adjust: Adjustments;
+		mode: CalculationMode;
 	}
 
 	let { title = 'Adjustments', mode, adjust = $bindable() }: Props = $props();
 	// let mode : 'datetime' | 'date' | 'time' = 'datetime';
 	// let adjust = {years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0};
 	let showDate = $derived.by(() => {
-		return mode === 'datetime' || mode === 'date';
+		return mode === CalculationMode.DateAndTime || mode === CalculationMode.DateOnly;
 	});
 	let showTime = $derived.by(() => {
-		return mode === 'datetime' || mode === 'time';
+		return mode === CalculationMode.DateAndTime || mode === CalculationMode.TimeOnly;
 	});
 </script>
 
@@ -35,9 +31,9 @@
 					<td><input id="days" type="number" bind:value={adjust.days} /></td>
 				</tr>
 				<tr>
-					<td><label for="years"><span class="label">Years</span></label> </td>
-					<td><label for="months"><span class="label">Months</span></label> </td>
-					<td><label for="days"><span class="label">Days</span></label> </td>
+					<td><label for="years"><span class="label">Years</span></label></td>
+					<td><label for="months"><span class="label">Months</span></label></td>
+					<td><label for="days"><span class="label">Days</span></label></td>
 				</tr>
 			{/if}
 			{#if showTime}
@@ -47,9 +43,9 @@
 					<td><input id="seconds" type="number" bind:value={adjust.seconds} /></td>
 				</tr>
 				<tr>
-					<td><label for="hours"><span class="label">Hours</span></label> </td>
-					<td><label for="minutes"><span class="label">Minutes</span></label> </td>
-					<td><label for="seconds"><span class="label">Seconds</span></label> </td>
+					<td><label for="hours"><span class="label">Hours</span></label></td>
+					<td><label for="minutes"><span class="label">Minutes</span></label></td>
+					<td><label for="seconds"><span class="label">Seconds</span></label></td>
 				</tr>
 			{/if}
 		</tbody>

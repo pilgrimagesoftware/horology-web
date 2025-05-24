@@ -1,10 +1,10 @@
 <script lang="ts">
-	import moment from 'moment';
+	import { CalculationMode } from '$lib/calculation';
 
 	interface Props {
 		title?: string;
 		baseDate: Date;
-		mode: 'datetime' | 'date' | 'time';
+		mode: CalculationMode;
 		calendar?: string;
 	}
 
@@ -27,10 +27,10 @@
 		};
 	});
 	let showDate = $derived.by(() => {
-		return mode === 'datetime' || mode === 'date';
+		return mode === CalculationMode.DateAndTime || mode === CalculationMode.DateOnly;
 	});
 	let showTime = $derived.by(() => {
-		return mode === 'datetime' || mode === 'time';
+		return mode === CalculationMode.DateAndTime || mode === CalculationMode.TimeOnly;
 	});
 	let maxMonths = $derived.by(() => {
 		return 12; // Default to Gregorian
@@ -40,11 +40,11 @@
 			return title;
 		}
 
-		if (mode === 'datetime') {
+		if (mode === CalculationMode.DateAndTime) {
 			return 'Date/Time';
-		} else if (mode === 'date') {
+		} else if (mode === CalculationMode.DateOnly) {
 			return 'Date';
-		} else if (mode === 'time') {
+		} else if (mode === CalculationMode.TimeOnly) {
 			return 'Time';
 		}
 	});

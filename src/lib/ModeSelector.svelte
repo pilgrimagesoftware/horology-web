@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { CalculationMode } from '$lib/calculation';
+
 	let { mode = $bindable() } = $props();
 	// let mode : 'datetime' | 'date' | 'time' = 'datetime';
 	// let modeSelected = () => {
@@ -6,17 +8,17 @@
 	// };
 	function modeSelected(event: Event) {
 		// Handle mode selection change
-		mode = event.target?.value;
+		mode = event.target?.value as CalculationMode;
 	}
 </script>
 
 <div class="component">
-<select id="mode" bind:value={mode} onchange={modeSelected}>
-	<option value="datetime">Date & Time</option>
-	<option value="date">Date Only</option>
-	<option value="time">Time Only</option>
-</select>
-<label class="label" for="mode">Mode</label>
+	<select id="mode" bind:value={mode} onchange={modeSelected}>
+		<option value={CalculationMode.DateAndTime}>Date & Time</option>
+		<option value={CalculationMode.DateOnly}>Date Only</option>
+		<option value={CalculationMode.TimeOnly}>Time Only</option>
+	</select>
+	<label class="label" for="mode">Mode</label>
 </div>
 
 <style>
