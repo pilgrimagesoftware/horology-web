@@ -40,6 +40,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Adjust a Date/Time</title>
+</svelte:head>
+
 <h2>Calculate</h2>
 
 <div class="section">
