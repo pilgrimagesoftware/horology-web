@@ -1,30 +1,59 @@
 <script lang="ts">
-    let { mode, adjust = $bindable() } = $props();
+	interface Props {
+		title?: string;
+		adjust: {
+			years: number;
+			months: number;
+			days: number;
+			hours: number;
+			minutes: number;
+			seconds: number;
+		};
+		mode: 'datetime' | 'date' | 'time';
+	}
+
+	let { title = 'Adjustments', mode, adjust = $bindable() }: Props = $props();
 	// let mode : 'datetime' | 'date' | 'time' = 'datetime';
 	// let adjust = {years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0};
+	let showDate = $derived.by(() => {
+		return mode === 'datetime' || mode === 'date';
+	});
+	let showTime = $derived.by(() => {
+		return mode === 'datetime' || mode === 'time';
+	});
 </script>
 
 <!-- Adjustment Inputs -->
-<div class="section">
-	<h3>Adjustments</h3>
-	<div class="grid">
-		{#if mode === 'datetime' || mode === 'date'}
-			<label for="adj_years">Years:</label>
-			<input id="adj_years" type="number" bind:value={adjust.years} />
-			<label for="adj_months">Months:</label>
-			<input id="adj_months" type="number" bind:value={adjust.months} />
-			<label for="adj_days">Days:</label>
-			<input id="adj_days" type="number" bind:value={adjust.days} />
-		{/if}
-		{#if mode === 'datetime' || mode === 'time'}
-			<label for="adj_hours">Hours:</label>
-			<input id="adj_hours" type="number" bind:value={adjust.hours} />
-			<label for="adj_minutes">Minutes:</label>
-			<input id="adj_minutes" type="number" bind:value={adjust.minutes} />
-			<label for="adj_seconds">Seconds:</label>
-			<input id="adj_seconds" type="number" bind:value={adjust.seconds} />
-		{/if}
-	</div>
+<div class="component">
+	<h3 class="title">{title}</h3>
+	<table>
+		<tbody>
+			{#if showDate}
+				<tr>
+					<td><input id="years" type="number" bind:value={adjust.years} /></td>
+					<td><input id="months" type="number" bind:value={adjust.months} /></td>
+					<td><input id="days" type="number" bind:value={adjust.days} /></td>
+				</tr>
+				<tr>
+					<td><label for="years"><span class="label">Years</span></label> </td>
+					<td><label for="months"><span class="label">Months</span></label> </td>
+					<td><label for="days"><span class="label">Days</span></label> </td>
+				</tr>
+			{/if}
+			{#if showTime}
+				<tr>
+					<td><input id="hours" type="number" bind:value={adjust.hours} /></td>
+					<td><input id="minutes" type="number" bind:value={adjust.minutes} /></td>
+					<td><input id="seconds" type="number" bind:value={adjust.seconds} /></td>
+				</tr>
+				<tr>
+					<td><label for="hours"><span class="label">Hours</span></label> </td>
+					<td><label for="minutes"><span class="label">Minutes</span></label> </td>
+					<td><label for="seconds"><span class="label">Seconds</span></label> </td>
+				</tr>
+			{/if}
+		</tbody>
+	</table>
 </div>
 
 <style>

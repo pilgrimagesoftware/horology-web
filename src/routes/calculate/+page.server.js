@@ -19,5 +19,6 @@ export function load() {
 			second: 0
 		},
         mode: 'dateAndTime',
+		calendar: 'gregorian',
 	};
 }

@@ -1,77 +1,45 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import DateTimeInput from '$lib/DateTimeInput.svelte';
 	import ModeSelector from '$lib/ModeSelector.svelte';
 	import AdjustmentInput from '$lib/AdjustmentInput.svelte';
 	import DateTimeOutput from '$lib/DateTimeOutput.svelte';
+	import FormatSelector from '$lib/FormatSelector.svelte';
 
-	let mode: 'datetime' | 'date' | 'time' = 'datetime';
-	let format: 'long' | 'short' | 'iso8601' = 'long';
+	let mode: 'datetime' | 'date' | 'time' = $state('datetime');
+	let format: 'long' | 'short' | 'iso8601' = $state('long');
 
 	// Base date and time
 	let now = new Date();
-	let baseDate: string = now.toLocaleDateString();
-	let baseTime: string = now.toLocaleTimeString();
+	let baseDate: Date = now;
 
 	// Adjustment values
-	let adjust = {
+	let adjust = $state({
 		years: 0,
 		months: 0,
 		days: 0,
 		hours: 0,
 		minutes: 0,
 		seconds: 0
-	};
+	});
 
-	let result: Date;
-
-	function formatSelected() {
-		calculateResult();
-	}
-
-	function modeSelected() {}
-
-	function calculateResult() {
-		const now = new Date();
-
-		const [year, month, day] = baseDate
-			? baseDate.split('-').map(Number)
-			: [now.getFullYear(), now.getMonth() + 1, now.getDate()];
-		const [hour, minute] = baseTime ? baseTime.split(':').map(Number) : [0, 0];
-
-		let date = new Date(year, month - 1, day, hour, minute, 0);
-
-		if (mode === 'datetime' || mode === 'date') {
-			date.setFullYear(date.getFullYear() + adjust.years);
-			date.setMonth(date.getMonth() + adjust.months);
-			date.setDate(date.getDate() + adjust.days);
-		}
-
-		if (mode === 'datetime' || mode === 'time') {
-			date.setHours(date.getHours() + adjust.hours);
-			date.setMinutes(date.getMinutes() + adjust.minutes);
-			date.setSeconds(date.getSeconds() + adjust.seconds);
-		}
-
-		result = new Date(); // date;
-	}
-
-	$: calculateResult();
+	let result = $derived.by(() => {
+		return new Date(baseDate.getFullYear() + adjust.years,
+			baseDate.getMonth() + adjust.months,
+			baseDate.getDate() + adjust.days,
+			baseDate.getHours() + adjust.hours,
+			baseDate.getMinutes() + adjust.minutes,
+			baseDate.getSeconds() + adjust.seconds);
+	});
 </script>
 
 <h2>Calculate</h2>
 
 <div class="section">
-<ModeSelector bind:mode />
-</div>
-
-<div class="section">
 <!-- Base Date/Time Input -->
 <DateTimeInput
+	title="Base Date/Time"
 	{baseDate}
-	{baseTime}
-	showDate={mode === 'datetime' || mode === 'date'}
-	showTime={mode === 'datetime' || mode === 'time'}
+	{mode}
 />
 </div>
 
@@ -84,3 +52,16 @@
 <!-- Result Section -->
 <DateTimeOutput date={result} {format} {mode} />
 </div>
+
+<div class="section grid">
+<ModeSelector bind:mode />
+<FormatSelector bind:format />
+</div>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+</style>
