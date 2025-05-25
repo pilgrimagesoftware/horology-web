@@ -1,29 +1,35 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>%sveltekit.title%</title>
-		<meta property="description" content="Do things with dates" />
-		<meta property="og:image" content="Link preview image URL" />
-		<meta property="og:site_name" content="Horology" />
-		<meta property="og:title" content="Horology" />
-		<meta property="og:description" content="Do things with dates" />
-		<meta property="og:url" content="Canonical link preview URL" />
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="color-scheme" content="dark light" />
-		%sveltekit.head%
-		<!-- duplication with svelte.dev/static/shared.css needed, else styles aren't applied during local dev -->
-		<link rel="stylesheet" href="/shared.css" />
-	</head>
-	<body>
-		<div style="display: contents">%sveltekit.body%</div>
 
-		<script>
-			const theme = new URL(window.location).searchParams.get('theme');
+<head>
+	<title>%sveltekit.title%</title>
+	<meta property="description" content="Do things with dates" />
+	<meta property="og:image" content="Link preview image URL" />
+	<meta property="og:site_name" content="Horology" />
+	<meta property="og:title" content="Horology" />
+	<meta property="og:description" content="Do things with dates" />
+	<meta property="og:url" content="Canonical link preview URL" />
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="color-scheme" content="dark light" />
+	%sveltekit.head%
+	<!-- duplication with svelte.dev/static/shared.css needed, else styles aren't applied during local dev -->
+	<link rel="stylesheet" href="/shared.css" />
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+	</style>
+</head>
 
-			document.documentElement.classList.remove('light', 'dark');
-			document.documentElement.classList.add(theme || 'light');
-		</script>
-	</body>
+<body>
+	<div style="display: contents">%sveltekit.body%</div>
+
+	<script>
+		const theme = new URL(window.location).searchParams.get('theme');
+
+		document.documentElement.classList.remove('light', 'dark');
+		document.documentElement.classList.add(theme || 'light');
+	</script>
+</body>
+
 </html>

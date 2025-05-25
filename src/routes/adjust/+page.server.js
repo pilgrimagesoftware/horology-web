@@ -18,7 +18,7 @@ export function load() {
 			minute: 0,
 			second: 0
 		},
-        mode: 'dateAndTime',
-		calendar: 'gregorian',
+		mode: 'dateAndTime',
+		calendar: 'gregorian'
 	};
 }

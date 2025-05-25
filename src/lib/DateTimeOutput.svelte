@@ -18,7 +18,7 @@
 	const TIME_LONG_24_HOUR_FORMAT = 'HH:mm:ss';
 	const TIME_SHORT_24_HOUR_FORMAT = 'HH:mm';
 
-    var hourFormat = $derived.by(() => {
+	var hourFormat = $derived.by(() => {
 		switch (format.formatStyle + '|' + format.hourStyle) {
 			case DateFormatStyle.Long + '|' + HourStyle.TwelveHour:
 				return TIME_LONG_12_HOUR_FORMAT;

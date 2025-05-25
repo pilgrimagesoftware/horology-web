@@ -24,5 +24,7 @@
 {@render children()}
 
 <style>
-
+	 :global(body) {
+    font-family: "Raleway", "Open Sans Variable", sans-serif;
+  }
 </style>

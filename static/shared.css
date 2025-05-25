@@ -241,30 +241,32 @@ ul.todos button:hover {
 	opacity: 1;
 }
 .grid {
-		display: grid;
-		gap: 0.5rem;
-		grid-template-columns: auto 1fr;
-		align-items: center;
-	}
-	.section {
-		border: 1px solid #ccc;
-		padding: 1rem;
-		margin-bottom: 1rem;
-		border-radius: 8px;
-	}
+	display: grid;
+	gap: 0.5rem;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+}
+.section {
+	border: 1px solid #ccc;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 8px;
+}
 
-	.title {
-		font-weight: bold;
-		color: darkgrey;
-		margin-bottom: 0.5rem;
-	}
+.title {
+	font-weight: bold;
+	color: darkgrey;
+	margin-bottom: 0.5rem;
+}
 
-		.label,
-	.date-divider {
-		font-size: 72%;
-		color: lightgrey;
-	}
-	.date-divider {
-        width: 20px;
-		text-align: center;
-	}
+.label,
+.date-divider {
+	font-size: 72%;
+	color: lightgrey;
+}
+.date-divider {
+	width: 20px;
+	text-align: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');

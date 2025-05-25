@@ -41,10 +41,10 @@
 </script>
 
 <svelte:head>
-	<title>Adjust a Date/Time</title>
+	<title>Adjust</title>
 </svelte:head>
 
-<h2>Calculate</h2>
+<h1>Adjust a Date/Time</h1>
 
 <div class="section">
 	<!-- Base Date/Time Input -->
